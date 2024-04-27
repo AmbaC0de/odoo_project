@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+note_access,Acces Etudiant,tdsi_gestion_note.model_tdsi_gestion_note_etudiant,tdsi_gestion_note.tdsi_group_user,1,1,1,1
+evaluation_access,Acces Note,tdsi_gestion_note.model_tdsi_gestion_note_evaluation,tdsi_gestion_note.tdsi_group_user,1,1,1,1
+subject_access,Acces Matiere,tdsi_gestion_note.model_tdsi_gestion_note_matiere,tdsi_gestion_note.tdsi_group_user,1,1,1,1
+inscription_access,Acces Inscription,tdsi_gestion_note.model_tdsi_gestion_note_inscription,tdsi_gestion_note.tdsi_group_user,1,1,1,1
+class_access,Acces Classe,tdsi_gestion_note.model_tdsi_gestion_note_classe,tdsi_gestion_note.tdsi_group_user,1,1,1,1

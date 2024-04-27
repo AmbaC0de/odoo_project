@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--    Sous menu Liste des etudiants-->
+    <record id="action_inscription_list" model="ir.actions.act_window">
+        <field name="name">Inscription</field>
+        <field name="res_model">tdsi_gestion_note.inscription</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_inscription_list"
+              name="Inscriptions"
+              parent="menu_root_tdsi"
+              action="action_inscription_list"/>
+
+     <!-- Vue tree ( list ) Inscription -->
+    <record id="view_tree_inscription" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.inscription.tree</field>
+        <field name="model">tdsi_gestion_note.inscription</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="annee_scolaire"/>
+                <field name="etudiant_id"/>
+                <field name="classe_id"/>
+            </tree>
+        </field>
+    </record>
+
+     <!-- Vue formulaire Inscription -->
+    <record id="view_form_inscription" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.inscription.form</field>
+        <field name="model">tdsi_gestion_note.inscription</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="annee_scolaire"/>
+                            <field name="etudiant_id"/>
+                        </group>
+                        <group>
+                            <field name="classe_id" widget="one2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

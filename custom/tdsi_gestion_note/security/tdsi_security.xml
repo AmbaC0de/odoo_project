@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+<!--    Categorie des droit d'acces sur le module -->
+    <record id="module_tdsi_security" model="ir.module.category">
+        <field name="name">TDSI</field>
+        <field name="description">Droits d'acces au module tdsi_gestion_note</field>
+    </record>
+
+<!--    Creation d'un groupe utilisateur appartenant a la category module_tdsi_security-->
+    <record id="tdsi_group_user" model="res.groups">
+        <field name="name">Utilisateur</field>
+        <field name="category_id" ref="module_tdsi_security"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+<!--    Creation d'un groupe administrateur -->
+    <record id="tdsi_group_admin" model="res.groups">
+        <field name="name">Administrateur</field>
+        <field name="category_id" ref="module_tdsi_security"/>
+        <field name="implied_ids" eval="[(4, ref('tdsi_group_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+
+</odoo>

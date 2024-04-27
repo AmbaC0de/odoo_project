@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <!--    Sous menu Notes des etudiants -->
+    <record id="action_note_list" model="ir.actions.act_window">
+        <field name="name">Note</field>
+        <field name="res_model">tdsi_gestion_note.evaluation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_note"
+              name="Evaluations"
+              parent="menu_root_tdsi"
+              action="action_note_list"/>
+
+    <!-- Vue tree ( list ) Evaluations -->
+    <record id="view_tree_evaluation" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.evaluation.tree</field>
+        <field name="model">tdsi_gestion_note.evaluation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="session"/>
+                <field name="semestre"/>
+                <field name="etudiant_id" widget="many2one_tags"/>
+                <field name="matiere_id"/>
+                <field name="note"/>
+            </tree>
+        </field>
+    </record>
+
+        <!-- Vue form Evaluations -->
+    <record id="view_form_evaluation" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.evaluation.form</field>
+        <field name="model">tdsi_gestion_note.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                             <field name="etudiant_id"/>
+                            <field name="note"/>
+                        </group>
+                        <group>
+                            <field name="session"/>
+                            <field name="matiere_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <!-- SOUS MENU ETUDIANT -->
+
+<!--  Action Permettant d'ouvrir le menu de la liste des etudiants  -->
+    <record id="action_etudiant_list" model="ir.actions.act_window">
+        <field name="name">Etudiant</field>
+        <field name="res_model">tdsi_gestion_note.etudiant</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+<!--  Bouton du menu Etudiants  -->
+    <menuitem id="menu_etudiant_list"
+              name="Etudiants"
+              parent="menu_root_tdsi"
+              action="action_etudiant_list"/>
+
+<!--    Action permettant d'emprimer un rapport -->
+    <record id="action_etudiant_releve" model="ir.actions.report">
+        <field name="name">Releve de note d un etudiant</field>
+        <field name="model">tdsi_gestion_note.etudiant</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">tdsi_gestion_note.releve_etudiant</field>
+<!--        <field name="print_report_name">"Releve de l'etudiant %s" % (object.name)</field>-->
+        <field name="binding_model_id" ref="tdsi_gestion_note.model_tdsi_gestion_note_etudiant"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Vue tree ( liste ) Etudiant -->
+    <record id="view_tree_etudiant" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.etudiant.tree</field>
+        <field name="model">tdsi_gestion_note.etudiant</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="numero_carte_etudiant" />
+                <field name="prenom"/>
+                <field name="nom"/>
+                <field name="date_de_naissance"/>
+            </tree>
+        </field>
+    </record>
+
+        <!-- Vue form ( formulaire ) Etudiant -->
+    <record id="view_form_etudiant" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.etudiant.form</field>
+        <field name="model">tdsi_gestion_note.etudiant</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="prenom"/>
+                            <field name="date_de_naissance"/>
+                        </group>
+                        <group>
+                            <field name="nom"/>
+                            <field name="numero_carte_etudiant" />
+                        </group>
+                        </group>
+                    <notebook>
+                        <page string="Evaluation premier semestre">
+                            <group>
+                                <field name="evaluation_ids" widget="one2many_list" string="">
+                                    <tree editable="bottom">
+                                        <field name="matiere_id"/>
+                                        <field name="note"/>
+                                        <field name="session"/>
+                                    </tree>
+                                </field>
+                                <field name="moyenne_semestre_1" />
+                            </group>
+                        </page>
+                        <page string="Evaluation second semestre">
+                            <group>
+                                <field name="moyenne_semestre_1" />
+
+                                <field name="evaluation_ids" widget="one2many_list">
+                                    <tree>
+                                        <field name="matiere_id"/>
+                                        <field name="note"/>
+                                        <field name="session"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

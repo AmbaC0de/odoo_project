@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--    Sous menu liste des Classes -->
+    <record id="action_classe_list" model="ir.actions.act_window">
+        <field name="name">Classe</field>
+        <field name="res_model">tdsi_gestion_note.classe</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_classe_list"
+              name="Classe"
+              parent="menu_root_tdsi"
+              action="action_classe_list"/>
+
+     <!-- Vue tree ( list ) Classes -->
+    <record id="view_tree_classe" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.classe.tree</field>
+        <field name="model">tdsi_gestion_note.classe</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="niveau"/>
+                <field name="nom"/>
+
+<!--                <field name="inscription_ids"/>-->
+            </tree>
+        </field>
+    </record>
+
+     <!-- Vue formulaire Classe -->
+    <record id="view_form_classe" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.classe.form</field>
+        <field name="model">tdsi_gestion_note.classe</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="niveau"/>
+                        <field name="nom"/>
+
+                         <!-- Champ 'inscription_ids' avec le widget 'one2many_list' -->
+<!--                        <group>-->
+                            <field name="inscription_ids" widget="one2many_list">
+                                <tree>
+                                    <!-- Colonnes à afficher dans la liste -->
+                                    <field name="annee_scolaire"/>
+                                    <field name="date_inscription"/>
+                                    <field name="etudiant_id"/>
+                                </tree>
+                            </field>
+<!--                        </group>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

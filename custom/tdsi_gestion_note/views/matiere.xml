@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <!--    Sous menu Liste des etudiants-->
+    <record id="action_matiere_list" model="ir.actions.act_window">
+        <field name="name">Matière</field>
+        <field name="res_model">tdsi_gestion_note.matiere</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_matiere_list"
+              name="Matière"
+              parent="menu_root_tdsi"
+              action="action_matiere_list"/>
+
+     <!-- Vue tree ( list ) matiere -->
+    <record id="view_tree_matiere" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.matiere.tree</field>
+        <field name="model">tdsi_gestion_note.matiere</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="libelle"/>
+                <field name="coefficient"/>
+            </tree>
+        </field>
+    </record>
+
+     <!-- Vue formulaire Matiere-->
+    <record id="view_form_matiere" model="ir.ui.view">
+        <field name="name">tdsi_gestion_note.matiere.form</field>
+        <field name="model">tdsi_gestion_note.matiere</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="libelle"/>
+                            <field name="coefficient"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>
