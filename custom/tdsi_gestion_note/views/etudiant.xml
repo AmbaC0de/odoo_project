@@ -62,30 +62,29 @@
                     <notebook>
                         <page string="Evaluation premier semestre">
                             <group>
-                                <field name="evaluation_ids" widget="one2many_list" string="">
+                                <field name="evaluation_1st_ids" widget="one2many_list" string="" >
                                     <tree editable="bottom">
                                         <field name="matiere_id"/>
                                         <field name="note"/>
                                         <field name="session"/>
                                     </tree>
                                 </field>
-                                <field name="moyenne_semestre_1" />
+                                <field name="moyenne_semestre_1" string="Moyenne"/>
                             </group>
                         </page>
                         <page string="Evaluation second semestre">
                             <group>
-                                <field name="moyenne_semestre_1" />
-
-                                <field name="evaluation_ids" widget="one2many_list">
+                                <field name="evaluation_2nd_ids" widget="one2many_list" string="">
                                     <tree>
                                         <field name="matiere_id"/>
                                         <field name="note"/>
                                         <field name="session"/>
                                     </tree>
                                 </field>
+                                <field name="moyenne_semestre_2" string="Moyenne"/>
                             </group>
                         </page>
-                </notebook>
+                    </notebook>
                 </sheet>
             </form>
         </field>

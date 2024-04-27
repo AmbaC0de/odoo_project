@@ -20,10 +20,19 @@ class Etudiant(models.Model):
     moyenne_semestre_1 = fields.Char("Moyenne", compute="_compute_moyenne_sem_1", store=True)
     moyenne_semestre_2 = fields.Char("Moyenne", compute="_compute_moyenne_sem_2", store=True)
 
-    evaluation_ids = fields.One2many(
+    evaluation_1st_ids = fields.One2many(
         'tdsi_gestion_note.evaluation',
         'etudiant_id',
         'Evaluations',
+        domain=[('semestre', '=', 'semestre1')]
+        #readonly=True
+    )
+
+    evaluation_2nd_ids = fields.One2many(
+        'tdsi_gestion_note.evaluation',
+        'etudiant_id',
+        'Evaluations',
+        domain=[('semestre', '=', 'semestre2')]
         #readonly=True
     )
 
@@ -41,18 +50,18 @@ class Etudiant(models.Model):
             else:
                 record.nom_complet = ""
 
-    @api.depends("evaluation_ids.note", "evaluation_ids.matiere_id.coefficient", "evaluation_ids.semestre")
+    @api.depends("evaluation_1st_ids.note", "evaluation_1st_ids.matiere_id.coefficient", "evaluation_1st_ids.semestre")
     def _compute_moyenne_sem_1(self):
         for record in self:
             notes_by_coeff = sum(
                 evaluation.note * evaluation.matiere_id.coefficient
-                for evaluation in record.evaluation_ids
-                if evaluation.semestre == "semestre1"
+                for evaluation in record.evaluation_1st_ids
+                # if evaluation.semestre == "semestre1"
             )
             sum_coeff = sum(
                 evaluation.matiere_id.coefficient
-                for evaluation in record.evaluation_ids
-                if evaluation.semestre == "semestre1"
+                for evaluation in record.evaluation_1st_ids
+                # if evaluation.semestre == "semestre1"
             )
 
             if sum_coeff:
@@ -67,18 +76,18 @@ class Etudiant(models.Model):
         print("annee  scolaire: ", annee_scolaire)
         return annee_scolaire
 
-    @api.depends("evaluation_ids.note", "evaluation_ids.matiere_id.coefficient", "evaluation_ids.semestre")
+    @api.depends("evaluation_2nd_ids.note", "evaluation_2nd_ids.matiere_id.coefficient", "evaluation_2nd_ids.semestre")
     def _compute_moyenne_sem_2(self):
         for record in self:
             notes_by_coeff = sum(
                 evaluation.note * evaluation.matiere_id.coefficient
-                for evaluation in record.evaluation_ids
-                if evaluation.semestre == "semestre2"
+                for evaluation in record.evaluation_2nd_ids
+                # if evaluation.semestre == "semestre2"
             )
             sum_coeff = sum(
                 evaluation.matiere_id.coefficient
-                for evaluation in record.evaluation_ids
-                if evaluation.semestre == "semestre2"
+                for evaluation in record.evaluation_2nd_ids
+                # if evaluation.semestre == "semestre2"
             )
 
             if sum_coeff:

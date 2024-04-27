@@ -13,7 +13,8 @@ class Evaluation(models.Model):
     note = fields.Integer("Note", required=True)
     semestre = fields.Selection(
         [('semestre1', 'Semestre 1'), ('semestre2', 'Semestre 2')],
-        "Semestre"
+        "Semestre",
+        required=True
     )
     session = fields.Selection(
         [('normale', 'Normale'), ('rattrapage', 'Rattrapage')],
